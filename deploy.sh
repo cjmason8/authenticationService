@@ -14,6 +14,10 @@ while getopts ":p:" opt; do
   esac
 done
 
+echo "docker login"
 docker login --username=cjmason8 --password=$PASSWORD
+echo "docker pull"
 docker pull cjmason8/auth-service:latest
+echo "docker run"
 docker run -p 8082:8080 -d cjmason8/auth-service:latest
+echo "finished"
