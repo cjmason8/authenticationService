@@ -42,23 +42,6 @@ public class UserDao {
   }
   
   /**
-   * Return the user having the passed email.
-   */
-  public User validateUser(User user) {
-    List<User> users = (List<User>) entityManager.createQuery(
-        "from User where userName = :userName and password = :password")
-        .setParameter("userName", user.getUserName())
-        .setParameter("password", user.getPassword())
-        .getResultList();
-    
-    if (users.size() > 0) {
-    	return users.get(0);
-    }
-    
-    return null;
-  }
-
-  /**
    * Return the user having the passed id.
    */
   public User getById(long id) {

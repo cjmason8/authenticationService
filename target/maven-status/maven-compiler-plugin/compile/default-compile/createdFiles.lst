@@ -1,9 +1,0 @@
-au/com/mason/authservice/dao/SessionTokenDao.class
-au/com/mason/authservice/domain/SessionToken.class
-au/com/mason/authservice/domain/User.class
-au/com/mason/authservice/dao/UserDao.class
-au/com/mason/authservice/service/SessionTokenService.class
-au/com/mason/authservice/service/UserService.class
-au/com/mason/authservice/controller/LoginController.class
-au/com/mason/authservice/ExpenseManagerApplication.class
-au/com/mason/authservice/config/DatabaseConfig.class

@@ -7,28 +7,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import au.com.mason.authservice.domain.SessionToken;
-import au.com.mason.authservice.domain.User;
+import au.com.mason.authservice.domain.UserApplication;
+import au.com.mason.authservice.dto.LoginInput;
 import au.com.mason.authservice.service.SessionTokenService;
-import au.com.mason.authservice.service.UserService;
+import au.com.mason.authservice.service.UserApplicationService;
 
 @RestController
 public class LoginController {
 	
 	@Autowired
-	private UserService userService;
+	private UserApplicationService userService;
 	
 	@Autowired
 	private SessionTokenService sessionTokenService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
-    String login(@RequestBody User user) {
-		User validatedUser = userService.validateUser(user);
+    String login(@RequestBody LoginInput loginInput) {
+		UserApplication validatedUser = userService.validateUser(loginInput);
 		if (validatedUser != null) {
-			SessionToken sessionToken = sessionTokenService.createSessionToken(validatedUser);
-			return "{\"loginStatus\":\"success\",\"user\":\"" + validatedUser.getUserName() + "\", \"token\":\"" + sessionToken.getToken() + "\"}";
+			SessionToken sessionToken = sessionTokenService.createSessionToken(validatedUser.getUser());
+			return "{\"loginStatus\":\"success\",\"user\":\"" + validatedUser.getUser().getUserName() + "\", \"token\":\"" + sessionToken.getToken() + "\"}";
 		}
 		else {
-			return "{\"loginStatus\":\"failed\",\"user\":\"" + user.getUserName() + "\"}";
+			return "{\"loginStatus\":\"failed\",\"user\":\"" + loginInput.getUserName() + "\"}";
 		}
     }
 }
