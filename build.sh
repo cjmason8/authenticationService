@@ -2,7 +2,7 @@
 
 set -e
 
-FULL_IMAGE_NAME="expense-manager"
+FULL_IMAGE_NAME="auth-service"
 
 while getopts ":p:d:" opt; do
   case $opt in
@@ -32,7 +32,7 @@ git config user.name "Release Manager"
 git config user.email "Release.Manager@jenkins.com.au"
 git add --all
 git commit -m "bump version"
-git push https://cjmason8:${GIT_PASS}@github.com/cjmason8/expenseManager.git
+git push https://cjmason8:${GIT_PASS}@github.com/cjmason8/authenticationService.git
 
 echo "login docker"
 docker login --username=cjmason8 --password=$PASSWORD
