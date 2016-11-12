@@ -16,4 +16,4 @@ done
 
 docker login --username=cjmason8 --password=$PASSWORD
 docker pull cjmason8/auth-service:latest
-docker run -p 8081:8080 -d cjmason8/auth-service:latest
+docker run -p 8082:8080 -d cjmason8/auth-service:latest
