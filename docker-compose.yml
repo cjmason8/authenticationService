@@ -1,9 +1,0 @@
-authService:
-  image: cjmason8/auth-service:latest
-  #log_driver: fluentd
-  #log_opt:
-  #  fluentd-address: "172.17.0.1:24224"
-  #  tag: "docker.{{.ImageName}}"
-  ports:
-    - "8081:8080"
-
