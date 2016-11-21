@@ -1,0 +1,9 @@
+authService:
+  environment:
+    DB_URL: jdbc:postgresql://cjmason8.ccdfbgxmzagr.us-west-2.rds.amazonaws.com:5432/authservice
+    DB_USER: cjmason8
+    DB_PASS: Yoke1976%
+    DB_DRIVER: org.postgresql.Driver
+    HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+    HIBERNATE_HBM2DDL_AUTO: update
+    

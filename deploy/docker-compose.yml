@@ -1,0 +1,5 @@
+authService:
+  image: cjmason8/auth-service:latest
+  ports:
+    - "8082:8080"
+

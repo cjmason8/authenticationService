@@ -26,10 +26,10 @@ public class DatabaseConfig {
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName(env.getProperty("db.driver"));
-		dataSource.setUrl(env.getProperty("db.url"));
-		dataSource.setUsername(env.getProperty("db.username"));
-		dataSource.setPassword(env.getProperty("db.password"));
+		dataSource.setDriverClassName(System.getenv().get("DB_DRIVER"));
+		dataSource.setUrl(System.getenv().get("DB_URL"));
+		dataSource.setUsername(System.getenv().get("DB_USER"));
+		dataSource.setPassword(System.getenv().get("DB_PASS"));
 		return dataSource;
 	}
 
@@ -51,8 +51,8 @@ public class DatabaseConfig {
 
 		// Hibernate properties
 		Properties additionalProperties = new Properties();
-		additionalProperties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
-		additionalProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+		additionalProperties.put("hibernate.dialect", System.getenv().get("HIBERNATE_DIALECT"));
+		additionalProperties.put("hibernate.hbm2ddl.auto", System.getenv().get("HIBERNATE_HBM2DDL_AUTO"));
 		entityManagerFactory.setJpaProperties(additionalProperties);
 
 		return entityManagerFactory;
@@ -81,9 +81,6 @@ public class DatabaseConfig {
 	}
 
 	// Private fields
-
-	@Autowired
-	private Environment env;
 
 	@Autowired
 	private DataSource dataSource;
