@@ -22,5 +22,5 @@ docker login --username=cjmason8 --password=$PASSWORD
 echo "docker pull"
 docker pull cjmason8/auth-service:latest
 echo "docker compose"
-docker-compose up -d -f ${ENV}/docker-compose.${ENV}.yml
+docker-compose up -d -f ${ENV}/docker-compose.${ENV}.yml authService
 echo "finished"
