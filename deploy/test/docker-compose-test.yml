@@ -1,4 +1,5 @@
 authService:
+  image: cjmason8/auth-service:latest
   environment:
     DB_URL: jdbc:postgresql://cjmason8.ccdfbgxmzagr.us-west-2.rds.amazonaws.com:5432/authservice
     DB_USER: cjmason8
@@ -6,4 +7,6 @@ authService:
     DB_DRIVER: org.postgresql.Driver
     HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
     HIBERNATE_HBM2DDL_AUTO: update
+  ports:
+    - "8082:8080"
     
