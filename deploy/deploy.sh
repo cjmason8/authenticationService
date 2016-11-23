@@ -2,6 +2,8 @@
 
 set -e
 
+cd "$(dirname "$0")"
+
 while getopts ":p:e:" opt; do
   case $opt in
     # Provide commands to run
