@@ -1,5 +1,8 @@
 package au.com.mason.authservice.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -9,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,14 +24,14 @@ public class UserApplication {
 	private long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "userId", nullable = false)
 	private User user;
 
 	@Enumerated(EnumType.STRING)
 	private ApplicationType applicationType;
 	
-	@Enumerated(EnumType.STRING)
-	private Role role;	
+	@OneToMany(mappedBy = "userApplication")
+	private List<UserApplicationRole> userApplicationRoles;
 
 	public long getId() {
 		return id;
@@ -53,13 +57,17 @@ public class UserApplication {
 		this.applicationType = applicationType;
 	}
 
-	public Role getRole() {
-		return role;
+	public List<Role> getRoles() {
+		List<Role> roles = new ArrayList<>();
+		for (UserApplicationRole userApplicationRole : userApplicationRoles) {
+			roles.add(userApplicationRole.getRole());
+		}
+		
+		return roles;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setUserApplicationRoles(List<UserApplicationRole> userApplicationRoles) {
+		this.userApplicationRoles = userApplicationRoles;
 	}
-	
 
 }

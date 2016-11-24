@@ -1,5 +1,6 @@
 package au.com.mason.authservice.controller;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ public class LoginController {
 		UserApplication validatedUser = userService.validateUser(loginInput);
 		if (validatedUser != null) {
 			SessionToken sessionToken = sessionTokenService.createSessionToken(validatedUser.getUser());
-			return "{\"loginStatus\":\"success\",\"user\":\"" + validatedUser.getUser().getUserName() + "\", \"token\":\"" + sessionToken.getToken() + "\"}";
+			return "{\"loginStatus\":\"success\",\"user\":\"" + validatedUser.getUser().getUserName() + "\", \"token\":\"" + sessionToken.getToken() + "\", \"roles\":\"" + StringUtils.join(validatedUser.getRoles(), ',') + "\"}";
 		}
 		else {
 			return "{\"loginStatus\":\"failed\",\"user\":\"" + loginInput.getUserName() + "\"}";
