@@ -24,6 +24,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
     String login(@RequestBody LoginInput loginInput) {
+		System.out.println("userName - " + loginInput.getUserName() + ", password - " + loginInput.getPassword() + ", application - " + loginInput.getApplicationType());
 		UserApplication validatedUser = userService.validateUser(loginInput);
 		if (validatedUser != null) {
 			SessionToken sessionToken = sessionTokenService.createSessionToken(validatedUser.getUser());

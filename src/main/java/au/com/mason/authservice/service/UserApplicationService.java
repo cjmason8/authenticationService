@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import au.com.mason.authservice.dao.UserApplicationDao;
-import au.com.mason.authservice.domain.ApplicationType;
 import au.com.mason.authservice.domain.UserApplication;
 import au.com.mason.authservice.dto.LoginInput;
 
@@ -16,6 +15,10 @@ public class UserApplicationService {
 	
 	public UserApplication validateUser(LoginInput loginInput) {
 		return userApplicationDao.validateUser(loginInput);
+	}
+	
+	public boolean userNameExists(LoginInput loginInput) {
+		return userApplicationDao.findByUserName(loginInput) != null;
 	}
 
 }

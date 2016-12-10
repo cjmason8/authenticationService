@@ -60,6 +60,23 @@ public class UserApplicationDao {
     
     return null;
   }
+  
+  /**
+   * Return the user having the passed email.
+   */
+  public UserApplication findByUserName(LoginInput loginInput) {
+    List<UserApplication> userApplications = (List<UserApplication>) entityManager.createQuery(
+        "from UserApplication where user.userName = :userName and applicationType = :applicationType")
+        .setParameter("userName", loginInput.getUserName())
+        .setParameter("applicationType", loginInput.getApplicationType())
+        .getResultList();
+    
+    if (userApplications.size() > 0) {
+    	return userApplications.get(0);
+    }
+    
+    return null;
+  }  
 
   /**
    * Return the user having the passed id.
