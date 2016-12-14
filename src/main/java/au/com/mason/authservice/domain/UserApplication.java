@@ -3,6 +3,7 @@ package au.com.mason.authservice.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -30,8 +31,8 @@ public class UserApplication {
 	@Enumerated(EnumType.STRING)
 	private ApplicationType applicationType;
 	
-	@OneToMany(mappedBy = "userApplication")
-	private List<UserApplicationRole> userApplicationRoles;
+	@OneToMany(mappedBy = "userApplication", cascade = CascadeType.ALL)
+	private List<UserApplicationRole> userApplicationRoles = new ArrayList<>();
 
 	public long getId() {
 		return id;
@@ -68,6 +69,10 @@ public class UserApplication {
 
 	public void setUserApplicationRoles(List<UserApplicationRole> userApplicationRoles) {
 		this.userApplicationRoles = userApplicationRoles;
+	}
+	
+	public void addUserApplicationRole(UserApplicationRole userApplicationRole) {
+		this.userApplicationRoles.add(userApplicationRole);
 	}
 
 }
