@@ -9,6 +9,8 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import au.com.mason.authservice.domain.User;
+import au.com.mason.authservice.domain.UserApplication;
+import au.com.mason.authservice.dto.LoginInput;
 
 @Repository
 @Transactional
@@ -54,6 +56,19 @@ public class UserDao {
   public void update(User user) {
     entityManager.merge(user);
     return;
+  }
+  
+  public User findByUserName(String userName) {
+    List<User> users = (List<User>) entityManager.createQuery(
+        "from User where userName = :userName")
+        .setParameter("userName", userName)
+        .getResultList();
+    
+    if (users.size() > 0) {
+    	return users.get(0);
+    }
+    
+    return null;
   }
 
   // Private fields

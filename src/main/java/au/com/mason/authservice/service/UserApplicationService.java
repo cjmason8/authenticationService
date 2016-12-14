@@ -13,6 +13,9 @@ public class UserApplicationService {
 	@Autowired
 	private UserApplicationDao userApplicationDao;
 	
+	@Autowired
+	private UserDao userDao;
+	
 	public UserApplication validateUser(LoginInput loginInput) {
 		return userApplicationDao.validateUser(loginInput);
 	}
