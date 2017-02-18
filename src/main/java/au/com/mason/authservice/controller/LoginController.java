@@ -1,6 +1,8 @@
 package au.com.mason.authservice.controller;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,8 @@ import au.com.mason.authservice.service.UserApplicationService;
 @RestController
 public class LoginController {
 	
+	private static final Logger LOGGER = LogManager.getLogger(LoginController.class);
+	
 	@Autowired
 	private UserApplicationService userService;
 	
@@ -24,7 +28,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
     String login(@RequestBody LoginInput loginInput) {
-		System.out.println("userName - " + loginInput.getUserName() + ", password - " + loginInput.getPassword() + ", application - " + loginInput.getApplicationType());
+		LOGGER.info("userName - " + loginInput.getUserName() + ", password - " + loginInput.getPassword() + ", application - " + loginInput.getApplicationType());
 		UserApplication validatedUser = userService.validateUser(loginInput);
 		if (validatedUser != null) {
 			SessionToken sessionToken = sessionTokenService.createSessionToken(validatedUser.getUser());
