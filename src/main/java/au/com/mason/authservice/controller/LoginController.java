@@ -28,13 +28,14 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
     String login(@RequestBody LoginInput loginInput) {
-		LOGGER.info("userName - " + loginInput.getUserName() + ", password - " + loginInput.getPassword() + ", application - " + loginInput.getApplicationType());
+		LOGGER.info("{\"message\":\"userName - " + loginInput.getUserName() + ", password - " + loginInput.getPassword() + ", application - " + loginInput.getApplicationType() + "}");
 		UserApplication validatedUser = userService.validateUser(loginInput);
 		if (validatedUser != null) {
 			SessionToken sessionToken = sessionTokenService.createSessionToken(validatedUser.getUser());
 			return "{\"loginStatus\":\"success\",\"user\":\"" + validatedUser.getUser().getUserName() + "\", \"token\":\"" + sessionToken.getToken() + "\", \"roles\":\"" + StringUtils.join(validatedUser.getRoles(), ',') + "\"}";
 		}
 		else {
+			LOGGER.info("Login failed for user - " + loginInput.getUserName() + ", password - " + loginInput.getPassword() + ", application - " + loginInput.getApplicationType());
 			return "{\"loginStatus\":\"failed\",\"user\":\"" + loginInput.getUserName() + "\"}";
 		}
     }
