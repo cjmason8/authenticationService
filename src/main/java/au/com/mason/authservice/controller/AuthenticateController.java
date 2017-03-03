@@ -15,7 +15,7 @@ public class AuthenticateController {
 	@Autowired
 	private SessionTokenService sessionTokenService;
 
-	@CrossOrigin(origins = { "http://localhost:4200", "http://80.241.221.122:8084" })
+	@CrossOrigin(origins = { "http://localhost:4200", "http://80.241.221.122:8083" })
 	@RequestMapping(value = "/authenticate/{token}", method = RequestMethod.GET, produces = "application/json")
     String login(@PathVariable String token) {
 		if (sessionTokenService.validateToken(token)) {
