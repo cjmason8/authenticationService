@@ -14,6 +14,6 @@ export DB_USER
 export HIBERNATE_DIALECT
 export HIBERNATE_HBM2DDL_AUTO
 
-./mvnw clean install
-./mvnw -Dserver.port=8082 spring-boot:run
+mvn clean install
+mvn -Dserver.port=8082 spring-boot:run
 

@@ -15,14 +15,14 @@ public class SessionTokenService {
 	@Autowired
 	private SessionTokenDao sessionTokenDao;
 	
-	public boolean validateToken(String token) {
+	public SessionToken validateToken(String token) {
 		SessionToken sessionToken = sessionTokenDao.get(token);
 		
     	if (sessionToken != null && LocalDateTime.now().isBefore(sessionToken.getExpiryDateTime())) {
-    		return true;
+    		return sessionToken;
     	}
     	
-    	return false;
+    	return null;
 	}
 	
 	public SessionToken createSessionToken(User user) {

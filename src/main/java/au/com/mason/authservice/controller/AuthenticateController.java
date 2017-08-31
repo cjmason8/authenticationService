@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import au.com.mason.authservice.domain.SessionToken;
 import au.com.mason.authservice.service.SessionTokenService;
 
 @RestController
@@ -16,8 +17,9 @@ public class AuthenticateController {
 
 	@RequestMapping(value = "/authenticate/{token}", method = RequestMethod.GET, produces = "application/json")
     String login(@PathVariable String token) {
-		if (sessionTokenService.validateToken(token)) {
-			return "{\"tokenStatus\":\"valid\"}";
+		SessionToken sessionToken = sessionTokenService.validateToken(token);
+		if (sessionToken != null) {
+			return "{\"tokenStatus\":\"valid\", \"user\":\"" + sessionToken.getUser().getUserName() + "\"}";
 		}
 		else {
 			return "{\"tokenStatus\":\"invalid\"}";
