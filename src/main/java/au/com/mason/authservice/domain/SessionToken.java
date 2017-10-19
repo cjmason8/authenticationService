@@ -33,7 +33,7 @@ public class SessionToken {
 
 	public SessionToken(User user) {
 		this.user = user;
-		this.expiryDateTime = Timestamp.valueOf(LocalDateTime.now().plusMinutes(45));
+		this.expiryDateTime = Timestamp.valueOf(LocalDateTime.now().plusMinutes(120));
 		this.token = UUID.randomUUID().toString();
 	}
 
