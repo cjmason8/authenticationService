@@ -20,7 +20,6 @@ while getopts ":p:e:" opt; do
 done
 
 TAG_NAME=$(<../VERSION)
-echo -e "TAG_NAME=$TAG_NAME" > env.txt
 
 echo "docker login"
 docker login --username=cjmason8 --password=$PASSWORD
@@ -28,5 +27,5 @@ echo "docker pull"
 docker pull cjmason8/auth-service:$TAG_NAME
 echo "docker compose"
 pwd
-docker-compose -e env.txt -f ${ENV}/docker-compose-${ENV}.yml up -d authService
+docker-compose -e TAG_NAME=$TAG_NAME -f ${ENV}/docker-compose-${ENV}.yml up -d authService
 echo "finished"
