@@ -1,4 +1,4 @@
-FROM cjmason8/ubuntu-java8:latest
+FROM openjdk:8u171-jdk-alpine3.8
 
 RUN apt-get update
 RUN apt-get install -y curl
