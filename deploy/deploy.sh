@@ -19,7 +19,7 @@ while getopts ":p:e:" opt; do
   esac
 done
 
-TAG_NAME=$(<VERSION)
+TAG_NAME=$(<../VERSION)
 echo -e "TAG_NAME=$TAG_NAME" > env.txt
 
 echo "docker login"
