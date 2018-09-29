@@ -1,7 +1,7 @@
 FROM openjdk:8u171-jdk-alpine3.8
 
-RUN apt-get update
-RUN apt-get install -y curl
+RUN apk update
+RUN apk add curl
 
 RUN mkdir /app
 COPY target/authservice-0.0.1-SNAPSHOT.jar /app/authService.jar
