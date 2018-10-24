@@ -1,9 +1,0 @@
-authService:
-  environment:
-     INFO_APP_VERSION: ${TAG_NAME}
-  image: cjmason8/auth-service:${TAG_NAME}
-  ports:
-    - "8082:8080"
-  volumes:
-    - /applogs:/applogs
-
