@@ -3,3 +3,6 @@ target
 LOCAL
 env.txt
 *.class
+.project
+.classpath
+.settings
